@@ -46,19 +46,30 @@ d3.json("data/samples.json").then((importedData) => {
     console.log("default otu_labels");
     console.log(defaultotulabels);
 
-    defaultsampvals = defaultsampvals.slice(0,10);
-    defaultotuids = defaultotuids.slice(0,10);
+    // Sort the data by sample_values (from 15.2>06 activity)
+    var sorteddefaultsampvals = defaultsampvals.sort((a,b) => b.sample_values - a.sample_values);
 
-    
+    // Slice the first 10 objects for plotting
+    sliceddefaultsampvals = sorteddefaultsampvals.slice(0, 10);
+    console.log("slicedefaultsampvals");
+    console.log(sliceddefaultsampvals);
+
+    // Reverse the array to accommodate Plotly's defaults
+    reversedsliceddefaultsampvals = sliceddefaultsampvals.reverse();
+    console.log("reversedliceddefaultsampvals");
+    console.log(reversedsliceddefaultsampvals);
+
     var data = [{
-    x: defaultsampvals,
+    x: reversedsliceddefaultsampvals,
     y: defaultotuids,
     type: "horizontalBar"
     }];
 
     var layout = {
     title: "Bar Chart",
-    xaxis: {title: "Count"}
+    xaxis: {title: "Count"},
+    height: 600,
+    width: 800
     };
 
     Plotly.newPlot("bar", data, layout);
