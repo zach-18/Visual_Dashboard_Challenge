@@ -28,6 +28,43 @@ d3.json("data/samples.json").then((importedData) => {
         dropdown[dropdown.length] = new Option(names[i], names[i]);
     }
 
+    // From 15.2>09-Stu-Event_Final (need a default plot)
+    // Display the default plot
+    // 940 is the default
+    var defaultsample = samples.filter((person) => person.id === "940");
+    console.log(defaultsample);
+
+    var defaultsampvals = samples.map(sv => sv.sample_values);
+    console.log("default sample_values");
+    console.log(defaultsampvals);
+
+    var defaultotuids = samples.map(otu => otu.otu_ids);
+    console.log("default otu_ids");
+    console.log(defaultotuids);
+
+    var defaultotulabels = samples.map(otul => otul.otu_labels);
+    console.log("default otu_labels");
+    console.log(defaultotulabels);
+
+    defaultsampvals = defaultsampvals.slice(0,10);
+    defaultotuids = defaultotuids.slice(0,10);
+
+    
+    var data = [{
+    x: defaultsampvals,
+    y: defaultotuids,
+    type: "horizontalBar"
+    }];
+
+    var layout = {
+    title: "Bar Chart",
+    xaxis: {title: "Count"}
+    };
+
+    Plotly.newPlot("bar", data, layout);
+    
+
+    
     // // ** From 15.2>07-Evr-Events-Review>Solved>script.js
     // // Use D3 to create an event handler
     d3.selectAll("body").on("change", updatePage);
@@ -54,16 +91,11 @@ d3.json("data/samples.json").then((importedData) => {
         console.log(inputValue);
         // console.log(data);
 
-        var filteredData = data.filter((person) => person.id === inputValue);
-        console.log(filteredData);
-
-      
-
+        // display the data for the chart in console
+        var filteredsamplesData = samples.filter((person) => person.id === inputValue);
+        console.log(filteredsamplesData);
         
     }
-
-
-
 
 // ** 15.3 > 07-Ins_Github_Pages > Solved > plots.js contains code for sorting and slcing to top 10 values
 
