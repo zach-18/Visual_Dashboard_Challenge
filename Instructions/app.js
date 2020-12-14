@@ -6,7 +6,16 @@ d3.json("data/samples.json").then((importedData) => {
     var data = importedData;
 
     var names = Object.values(importedData.names);
+    console.log("Names");
     console.log(names);
+
+    var metadata = Object.values(importedData.metadata);
+    console.log("metadata");
+    console.log(metadata);
+
+    var samples = Object.values(importedData.samples);
+    console.log("samples");
+    console.log(samples);
 
     // /** from stackoverflow:  */
 // /* https://stackoverflow.com/questions/9895082/javascript-populate-drop-down-list-with-array
@@ -27,12 +36,36 @@ d3.json("data/samples.json").then((importedData) => {
         // Use D3 to select the dropdown menu
         var dropdownMenu = d3.selectAll("#selDataset").node();
         // Assign the dropdown menu item ID to a variable
-        var dropdownMenuID = dropdownMenu.id;
+        var dropdownMenuID = dropdownMenu.Id;
         // Assign the dropdown menu option to a variable
         var selDataset = dropdownMenu.value;
 
+        // from 14.3>09-Par_Form_Filter:
+          // Select the input element and get the raw HTML node
+        var inputElement = d3.select("#selDataset");
+
+        // Get the value property of the input element
+        var inputValue = inputElement.property("value");
+
         console.log(dropdownMenuID);
         console.log(selDataset);
+
+        // from 14.3>09
+        console.log(inputValue);
+        // console.log(data);
+
+        var filteredData = data.filter((person) => person.id === inputValue);
+        console.log(filteredData);
+
+      
+
+        
     }
+
+
+
+
+// ** 15.3 > 07-Ins_Github_Pages > Solved > plots.js contains code for sorting and slcing to top 10 values
+
 
 });
