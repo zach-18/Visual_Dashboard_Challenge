@@ -19,5 +19,20 @@ d3.json("data/samples.json").then((importedData) => {
         dropdown[dropdown.length] = new Option(names[i], names[i]);
     }
 
+    // // ** From 15.2>07-Evr-Events-Review>Solved>script.js
+    // // Use D3 to create an event handler
+    d3.selectAll("body").on("change", updatePage);
+
+    function updatePage() {
+        // Use D3 to select the dropdown menu
+        var dropdownMenu = d3.selectAll("#selDataset").node();
+        // Assign the dropdown menu item ID to a variable
+        var dropdownMenuID = dropdownMenu.id;
+        // Assign the dropdown menu option to a variable
+        var selDataset = dropdownMenu.value;
+
+        console.log(dropdownMenuID);
+        console.log(selDataset);
+    }
 
 });
