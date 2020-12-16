@@ -17,7 +17,7 @@ d3.json("data/samples.json").then((importedData) => {
     console.log("samples");
     console.log(samples);
 
-    // /** from stackoverflow:  */
+    // /** from stackoverflow:  */ (To add names to dropdown)
 // /* https://stackoverflow.com/questions/9895082/javascript-populate-drop-down-list-with-array
     // Get dropdown element from DOM
     var dropdown = document.getElementById("selDataset");
@@ -99,16 +99,38 @@ d3.json("data/samples.json").then((importedData) => {
         console.log(selDataset);
 
         // from 14.3>09
+        console.log("filtered selection, use inputValue");
         console.log(inputValue);
         // console.log(data);
 
+        // data to build table for demographic: (metadata)
+        // display the data for the chart in console
+        var filterednamesData = metadata.filter((meta) => meta.id === +inputValue);
+        // here is the data for the filter selection.
+        console.log("Metadata for filter selection");
+        console.log(filterednamesData);
+
         // display the data for the chart in console
         var filteredsamplesData = samples.filter((person) => person.id === inputValue);
+        // here is the data for the filter selection.
+        console.log("Sample Data for filter selection");
         console.log(filteredsamplesData);
         
-    }
+        var idmetaFilter = filteredsamplesData.map(m => m.id);
+        var ethnicitymetaFilter = filteredsamplesData.map(m => m.ethnicity);
+        var idmetaFilter = filteredsamplesData.map(m => m.id);
+        var idmetaFilter = filteredsamplesData.map(m => m.id);
+        var idmetaFilter = filteredsamplesData.map(m => m.id);
+        var idmetaFilter = filteredsamplesData.map(m => m.id);
+        var idmetaFilter = filteredsamplesData.map(m => m.id);
 
-// ** 15.3 > 07-Ins_Github_Pages > Solved > plots.js contains code for sorting and slcing to top 10 values
+        console.log("meta id");
+        console.log(idmetaFilter);
+
+        console.log("meta ethnicity");
+        console.log(ethnicitymetaFilter);
+
+    };
 
 
 });
