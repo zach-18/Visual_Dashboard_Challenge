@@ -6,7 +6,7 @@ I was able to access the data by testing code in console.log.
 I was able also to use code from google to figure out how to populate
 the filter with the test subject No.
 
-I started to build the line chart, and had accessed the data, and 
+I started to build the bar chart, and had accessed the data, and 
 created the plotly framework.  However, it did not refresh w/ the 
 filter selection.
 
