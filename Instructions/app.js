@@ -11,7 +11,8 @@ function updateTable(sample_id) {
         var otuIds = result.otu_ids;
         var otuLabels = result.otu_labels;
         var sampleValues = result.sample_values;
-
+        
+        // Code below explained by Tutor on 12/16
         var yticks = otuIds.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
         var barData = [
             {
@@ -102,9 +103,62 @@ function init() {
 function optionChanged(newSample) {
     updateTable(newSample);
     // buildMetadata(newSample);
-}
+    d3.json("data/samples.json").then((data) => {
+    var meta = data.metadata
+    var selectedMetadata = meta.filter(m => m.id === +newSample);
+    var tablePanel = selectedMetadata[0];
+    console.log("show selected meta data in new code");
+
+    console.log("meta");
+    console.log(meta);
+    
+    console.log("selectedMetadata");
+    console.log(selectedMetadata);
+
+    console.log("tablePanel");
+    console.log(tablePanel);
+
+    console.log(tablePanel.ethnicity);
+    console.log(tablePanel.gender);
+
+    // var ethnicityData = selectedMetadata.map(z => +z.ethnicity);
+    var ethnicityData = tablePanel.ethnicity;
+    console.log ("ethnicityData");
+    console.log(ethnicityData);
+    d3.select("#ethnicitymetaFilter").text(`ethnicity: ${ethnicityData}`);
+
+    var idData = tablePanel.id;
+    d3.select("#idmetaFilter").text(`id: ${idData}`);
+
+    var genderData = tablePanel.gender;
+    d3.select("#gendermetaFilter").text(`gender: ${genderData}`);
+
+    var ageData = tablePanel.age;
+    d3.select("#agemetaFilter").text(`age: ${ageData}`);
+
+    var locationData = tablePanel.location;
+    d3.select("#locationmetaFilter").text(`location: ${locationData}`);
+
+    var bbtypeData = tablePanel.bbtype;
+    d3.select("#bbtypemetaFilter").text(`bbtype: ${bbtypeData}`);
+
+    var wfreqData = tablePanel.wfreq;
+    d3.select("#wfreqmetaFilter").text(`wfreq: ${wfreqData}`);
+
+    // // Code below reviewed in office hours before class on 12/17
+    // // selectedMetadata.html("");
+    // Object.defineProperties(tablePanel).forEach(([key, value]) => {
+    //     var cell = selectedMetadata.append("div");
+    //     cell.text(value);
+    // });
+    });
+
+};
 
 
+// ** NOTE:  Prior to meeting my tutuor, I had many console.log and other variables
+// that I used to ensure I was pulling the right data.  I left it here as a 
+// reference.
 
 // // ** From 15.2>07-Evr-Events-Review>Solved>script.js
 // // Use D3 to create an event handler
