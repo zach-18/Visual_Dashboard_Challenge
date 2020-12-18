@@ -12,7 +12,7 @@ function updateTable(sample_id) {
         var otuLabels = result.otu_labels;
         var sampleValues = result.sample_values;
         
-        // Code below explained by Tutor on 12/16
+        // Code below discussed / explained with Tutor on 12/16
         var yticks = otuIds.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
         var barData = [
             {
@@ -54,10 +54,6 @@ function updateTable(sample_id) {
             width: 600
         };
         Plotly.newPlot("bubble", bubbleData, bubbleLayout);
-
-
-
-
     })
 
 };
@@ -100,6 +96,9 @@ function init() {
     )
 };
 
+  // // Code below is a combo of answers from my tutor and hints from what was
+  //reviewed in office hours before class on 12/15 and 12/17.
+  
 function optionChanged(newSample) {
     updateTable(newSample);
     // buildMetadata(newSample);
@@ -107,21 +106,14 @@ function optionChanged(newSample) {
     var meta = data.metadata
     var selectedMetadata = meta.filter(m => m.id === +newSample);
     var tablePanel = selectedMetadata[0];
-    console.log("show selected meta data in new code");
+    // console.log("show selected meta data in new code");
 
-    console.log("meta");
-    console.log(meta);
-    
-    console.log("selectedMetadata");
-    console.log(selectedMetadata);
+    // console.log("tablePanel");
+    // console.log(tablePanel);
 
-    console.log("tablePanel");
-    console.log(tablePanel);
+    // console.log(tablePanel.ethnicity);
+    // console.log(tablePanel.gender);
 
-    console.log(tablePanel.ethnicity);
-    console.log(tablePanel.gender);
-
-    // var ethnicityData = selectedMetadata.map(z => +z.ethnicity);
     var ethnicityData = tablePanel.ethnicity;
     console.log ("ethnicityData");
     console.log(ethnicityData);
@@ -144,13 +136,6 @@ function optionChanged(newSample) {
 
     var wfreqData = tablePanel.wfreq;
     d3.select("#wfreqmetaFilter").text(`wfreq: ${wfreqData}`);
-
-    // // Code below reviewed in office hours before class on 12/17
-    // // selectedMetadata.html("");
-    // Object.defineProperties(tablePanel).forEach(([key, value]) => {
-    //     var cell = selectedMetadata.append("div");
-    //     cell.text(value);
-    // });
     });
 
 };
