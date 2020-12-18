@@ -1,6 +1,6 @@
-// ** From 15.3>07-Ins_Github_Pages>Solved>JSplots.js
-// Use D3 fetch to read the JSON file
-// The data from the JSON file is arbitrarily named importedData as the argument
+// *** On Wednesday 12/16 I met w/ my Tutor.  We made several structural changes to my code.  
+// The use of functions has been changed to make the flow of code much easier to follow.
+
 function updateTable(sample_id) {
     d3.json("data/samples.json").then((data) => {
         var samples = data.samples
@@ -26,8 +26,8 @@ function updateTable(sample_id) {
         var layout = {
             title: "Bar Chart",
             xaxis: { title: "Count" },
-            height: 600,
-            width: 800
+            height: 400,
+            width: 600
         };
 
         Plotly.newPlot("bar", barData, layout);
@@ -47,16 +47,25 @@ function updateTable(sample_id) {
         ]
 
         var bubbleLayout = {
-            title: "Bacterria",
+            title: "Bacteria",
             xaxis: { title: "OTU ID"},
+            height: 400,
+            width: 600
         };
         Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+
+
+
+
     })
 
 };
 init();
 updateTable("940");
 
+// ** From 15.3>07-Ins_Github_Pages>Solved>JSplots.js
+// Use D3 fetch to read the JSON file
+// The data from the JSON file is arbitrarily named importedData as the argument
 function init() {
     d3.json("data/samples.json").then((importedData) => {
         console.log(importedData);
@@ -85,9 +94,7 @@ function init() {
             dropdown[dropdown.length] = new Option(names[i], names[i]);
         };
 
-        // From 15.2>09-Stu-Event_Final (need a default plot)
-        // Display the default plot
-        // 940 is the default
+
     }
     )
 };
